@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Admin Shop Phone</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <!-- Page Content Holder -->
+      <div id="content">
+        <div class="container">
+          <div class="card text-center">
+            <!-- Header -->
+            <div class="card-header myCardHeader">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3 class="text-left text-primary font-weight-bold">
+                    Danh sách sản phẩm
+                  </h3>
+                </div>
+                <div class="col-md-6 text-right">
+                  <button
+                    id=""
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#phoneModal"
+                  >
+                    Thêm sản phẩm
+                  </button>
+                  <a class="btn btn-warning text-white " href="./index.html">Quay về trang chủ</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Body -->
+            <!-- Search -->
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col">
+                  <div class="input-group">
+                    <input
+                      id="inputSearch"
+                      type="text"
+                      class="form-control"
+                      placeholder="Nhập tên sản phẩm"
+                    />
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i class="fa fa-search"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <table class="table table-bordered table-hover myTable">
+                <thead class="text-primary">
+                  <tr>
+                    <th class="nowrap">
+                      <span class="mr-1">Mã sản phẩm</span>
+                    </th>
+                    <th>Tên sản phẩm</th>
+                    <th>Màn hình</th>
+                    <th>Camera sau</th>
+                    <th>Camera trước</th>
+                    <th>Giá</th>
+                    <th>Hãng</th>
+                    <th>Số lượng</th>
+                    <th><em class="fa fa-cog"></em></th>
+                  </tr>
+                </thead>
+                <tbody id="tableDanhSach"></tbody>
+              </table>
+            </div>
+
+            <!-- Footer -->
+            <div class="card-footer myCardFooter">
+              <nav>
+                <ul
+                  class="pagination justify-content-center"
+                  id="ulPhanTrang"
+                ></ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="phoneModal"
+      tabindex="-1"
+      aria-labelledby="phoneModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-success" id="exampleModalLabel">
+              Thêm sản phẩm
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text h-100">Tên sản phẩm</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="phoneName"
+                    class="form-control input-sm"
+                    placeholder="Tên sản phẩm"
+                  />
+                </div>
+
+                <span class="sp-thongbao" id="spanPhoneName"></span>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Giá</span>
+                  </div>
+                  <input
+                    type="number"
+                    id="price"
+                    class="form-control input-sm"
+                    placeholder="Giá"
+                  />
+                </div>
+                <span class="sp-thongbao" id="spanPrice"></span>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Màn hình</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="screen"
+                    class="form-control input-sm"
+                    placeholder="Màn hình"
+                  />
+                </div>
+
+                <span class="sp-thongbao" id="spanScreen"></span>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Camera sau</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="backCamera"
+                    class="form-control input-sm"
+                    placeholder="Camera sau"
+                  />
+                </div>
+                <span class="sp-thongbao" id="spanBackCamera"></span>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Camera trước</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="frontCamera"
+                    class="form-control"
+                    placeholder="Camera trước"
+                  />
+                </div>
+
+                <span class="sp-thongbao" id="spanfrontCamera"></span>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Mô tả</span>
+                  </div>
+                  <textarea
+                    placeholder="Mô tả"
+                    class="form-control"
+                    id="desc"
+                    rows="3"
+                  ></textarea>
+                </div>
+                <span class="sp-thongbao" id="spanMoTa"></span>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Hình ảnh</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="image"
+                    class="form-control input-sm"
+                    placeholder="Hình ảnh"
+                  />
+                </div>
+                <span class="sp-thongbao" id="spanImage"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Hãng</span>
+                  </div>
+                  <select class="form-control" id="branch">
+                    <option value="Iphone">Iphone</option>
+                    <option value="Samsung">Samsung</option>
+                  </select>
+                </div>
+
+                <span class="sp-thongbao" id="spanBranch"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Số lượng</span>
+                  </div>
+                  <input
+                    type="number"
+                    id="quantity"
+                    class="form-control input-sm"
+                    placeholder="Số lượng"
+                  />
+                </div>
+                <span class="sp-thongbao" id="spanQuantity"></span>
+              </div>
+
+              <button type="reset" id="btnResetModal" style="display: none">
+                RESET
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="btnCloseModal"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              onclick="createProduct()"
+              type="button"
+              class="btn btn-primary"
+              id="btnAddProduct"
+            >
+              Thêm sản phẩm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./models/product.js"></script>
+    <script src="./js/admin.js" ></script>
+  </body>
+</html>
