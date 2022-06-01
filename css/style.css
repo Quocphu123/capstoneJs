@@ -1,3 +1,15 @@
 .product #renderProduct img{
     width: 100%;
 }
+.sp-thongbao {
+    color: red;
+}
+.input-group-text {
+    width: 160px;
+ 
+    height: 100%;
+  
+}
+.form-group {
+    margin: 10px;
+}

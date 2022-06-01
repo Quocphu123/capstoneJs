@@ -42,7 +42,7 @@ let selectType = () => {
   var selectValue = document.getElementById("mySelect").value.toUpperCase();
   console.log(selectValue);
   for (let i = 0; i < productList.length; i++) {
-    if (productList[i].type.toUpperCase() === selectValue) {
+    if (productList[i].type.toUpperCase() === selectValue ) {
       selectedArray.push(productList[i]);
     }
     if (selectValue === "All") {
