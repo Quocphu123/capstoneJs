@@ -1,5 +1,5 @@
 let productList = [];
-let dataList = []
+let dataList = [];
 const fetchProductData = async () => {
   const res = await axios({
     url: "https://5bd2959ac8f9e400130cb7e9.mockapi.io/api/products",
@@ -24,10 +24,9 @@ const renderProduct = () => {
             <td>${price}</td>
             <td>${type}</td>
             <td>${quantity}</td>
-
             <td>
-            <button class="btn btn-success">CẬP NHẬT</button>
-            <button type="button" class="btn btn-danger">XOÁ</button>
+            <button data-bs-toggle="modal" data-bs-target="#phoneModal" class="btn btn-success" onclick="getProduct(${id})">CẬP NHẬT</button>
+            <button type="button" class="btn btn-danger" onclick="deleteProduct(${id})">XOÁ</button>
             </td>
         </tr>
     `;
@@ -35,7 +34,32 @@ const renderProduct = () => {
   document.getElementById("tableDanhSach").innerHTML = dataHTML;
 };
 
-const createProduct = () => {
+const getProduct = (id) => {
+  const foundProduct = findProductById(id);
+  let {
+    name,
+    backCamera,
+    frontCamera,
+    price,
+    screen,
+    img,
+    desc,
+    type,
+    quantity,
+  } = foundProduct;
+
+  document.getElementById("phoneModal").value = name
+  document.getElementById("backCamera").value = backCamera;
+  document.getElementById("frontCamera").value = frontCamera;
+  document.getElementById("price").value = price;
+  document.getElementById("screen").value = screen;
+  document.getElementById("image").value = img;
+  document.getElementById("desc").value = desc;
+  document.getElementById("branch").value = type;
+  document.getElementById("quantity").value = quantity;
+};
+
+const createProduct = async () => {
   let name = document.getElementById("phoneName").value;
   let price = document.getElementById("price").value;
   let screen = document.getElementById("screen").value;
@@ -57,22 +81,39 @@ const createProduct = () => {
     branch,
     quantity
   );
-  productList.push(newProduct);
-  addProduct(productList)
+
+  try {
+    await axios({
+      url: " https://5bd2959ac8f9e400130cb7e9.mockapi.io/api/products",
+      method: "POST",
+      data: newProduct,
+    });
+    fetchProductData();
+    document.getElementById("btnCloseModal").click();
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-const addProduct = (productList) => {
+const deleteProduct = async (id) => {
+  const product = findProductById(id);
+  if (confirm(`Bạn có muốn xóa sản phẩm này: ${product.name}`)) {
     try {
-         axios({
-            url: " https://5bd2959ac8f9e400130cb7e9.mockapi.io/api/products",
-            method:"POST",
-            data:productList
-        })
+      await axios({
+        url: `https://5bd2959ac8f9e400130cb7e9.mockapi.io/api/products/${id}`,
+        method: "DELETE",
+      });
+      fetchProductData();
+    } catch (err) {
+      console.log(err);
     }
-    catch(err) {
-        console.log(err);
-    }
-    fetchProductData();
-}
+  }
+};
+
+const findProductById = (id) => {
+  return dataList.find((item) => {
+    return item.id == id;
+  });
+};
 
 fetchProductData();
