@@ -19,16 +19,16 @@ let renderProduct = (data) => {
   data.map((item, index) => {
     let { id, name, img, desc } = item;
     dataHTML += `
-            <div class="col-4 ">
-                <div class="card">
-                <img src=${img} alt="#" />
-                <div class="card-body">
-                    <h5 class="card-title">${name}</h5>
-                    <p class="card-text">
-                       ${desc}
-                    </p>
-                    <button href="#" onclick="addCart('${id}')" class="btn btn-success w-100">Add To Cart</button>
-                </div>
+            <div class="col-4 mb-3">
+                <div class="card h-100 mb-5">
+                  <img src=${img} alt="#" class="mt-3"/>
+                  <div class="card-body">
+                      <h5 class="card-title">${name}</h5>
+                      <p class="card-text">
+                        ${desc}
+                      </p>
+                      <button href="#" onclick="addCart('${id}')" class="btn btn-success w-100">Add To Cart</button>
+                  </div>
                 </div>
             </div>
         `;
@@ -39,17 +39,29 @@ fetProduct();
 
 let selectType = () => {
   let selectedArray = [];
-  var selectValue = document.getElementById("mySelect").value.toUpperCase();
-  console.log(selectValue);
-  for (let i = 0; i < productList.length; i++) {
-    if (productList[i].type.toUpperCase() === selectValue ) {
-      selectedArray.push(productList[i]);
-    }
-    if (selectValue === "All") {
-      renderProduct(productList);
-    }
+  var selectValue = document
+    .getElementById("mySelect")
+    .value.toUpperCase()
+    .trim();
+  // for (let i = 0; i < productList.length; i++) {
+  //   if (productList[i].type.toUpperCase() === selectValue) {
+  //     selectedArray.push(productList[i]);
+  //     console.log(selectedArray);
+  //     renderProduct(selectedArray);
+  //   } else {
+
+  //     renderProduct(productList);
+  //   }
+  // }
+  const productType = productList.filter(
+    (product) => product.type.toUpperCase().trim() == selectValue
+  );
+  if (!productType.length ) {
+    renderProduct(productList);
+  }  else {
+    renderProduct(productType)
   }
-  renderProduct(selectedArray);
+    
 };
 
 let renderCart = (data) => {
